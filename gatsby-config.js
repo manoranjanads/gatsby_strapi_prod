@@ -20,8 +20,7 @@ module.exports = {
         postsPerPage: 5,
         showMenuItems: 2,
         menuMoreText: 'Show more',
-        mainMenu: [
-            {
+        mainMenu: [{
                 title: 'About',
                 path: '/about',
             },
@@ -83,8 +82,7 @@ module.exports = {
         {
             resolve: `gatsby-transformer-remark`,
             options: {
-                plugins: [
-                    {
+                plugins: [{
                         resolve: 'gatsby-remark-embed-video',
                         options: {
                             related: false,
@@ -126,7 +124,7 @@ module.exports = {
         {
             resolve: `gatsby-source-strapi-v2`,
             options: {
-                apiURL: `http://localhost:1337`,
+                apiURL: `https://strapi.manoranjana.me`,
                 queryLimit: 1000, // Default to 100
                 contentTypes: [`article`, `category`],
                 singleTypes: [
