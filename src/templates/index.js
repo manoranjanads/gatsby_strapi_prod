@@ -12,50 +12,55 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
         allStrapiArticle: { edges: posts },
     } = data;
 
-    return (
-        <>
-            <SEO />
-            <Layout>
-                {posts
-                    .filter(({ node: { publish = false } = {} }) => publish) // we want to only show articles with publish:true
-                    .map(({ node }) => {
-                        // eslint-disable-next-line no-console
-                        console.log({ node });
-                        const {
-                            id,
-                            excerpt: autoExcerpt,
+    return ( <
+        >
+        <
+        SEO / >
+        <
+        Layout > {
+            posts
+            .filter(({ node: { publish = false } = {} }) => publish) // we want to only show articles with publish:true
+            .map(({ node }) => {
+                // eslint-disable-next-line no-console
+                console.log({ node });
+                const {
+                    id,
+                    excerpt: autoExcerpt,
+                    title,
+                    date,
+                    author,
+                    coverImage,
+                    excerpt,
+                    categories: tags,
+                } = node;
+                return ( <
+                    Post key = { id }
+                    title = { title }
+                    date = { date }
+                    path = {
+                        titleToPath({
+                            basePath: '/articles',
                             title,
-                            date,
-                            author,
-                            coverImage,
-                            excerpt,
-                            categories: tags,
-                        } = node;
-                        return (
-                            <Post
-                                key={id}
-                                title={title}
-                                date={date}
-                                path={titleToPath({
-                                    basePath: '/articles',
-                                    title,
-                                })}
-                                author={author}
-                                coverImage={coverImage}
-                                tags={tags}
-                                excerpt={excerpt || autoExcerpt}
-                            />
-                        );
-                    })}
+                        })
+                    }
+                    author = { author }
+                    coverImage = { coverImage }
+                    tags = { tags }
+                    excerpt = { excerpt || autoExcerpt }
+                    />
+                );
+            })
+        }
 
-                <Navigation
-                    previousPath={previousPagePath}
-                    previousLabel="Newer posts"
-                    nextPath={nextPagePath}
-                    nextLabel="Older posts"
-                />
-            </Layout>
-        </>
+        <
+        Navigation previousPath = { previousPagePath }
+        previousLabel = "Newer posts"
+        nextPath = { nextPagePath }
+        nextLabel = "Older posts" /
+        >
+        <
+        /Layout> <
+        />
     );
 };
 
@@ -67,7 +72,7 @@ Index.propTypes = {
     }),
 };
 
-export const postsQuery = graphql`
+export const postsQuery = graphql `
     query($limit: Int!, $skip: Int!) {
         allStrapiArticle(
             sort: { fields: created_at, order: DESC }

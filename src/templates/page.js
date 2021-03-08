@@ -20,22 +20,24 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     } = data.strapiArticle;
     const { next, previous } = pageContext;
 
-    return (
-        <Layout>
-            <SEO title={title} description={autoExcerpt} />
-            <Post
-                key={id}
-                title={title}
-                date={date}
-                path={path}
-                author={author}
-                coverImage={coverImage}
-                html={html}
-                tags={tags}
-                previousPost={previous}
-                nextPost={next}
-            />
-        </Layout>
+    return ( <
+        Layout >
+        <
+        SEO title = { title }
+        description = { autoExcerpt }
+        /> <
+        Post key = { id }
+        title = { title }
+        date = { date }
+        path = { path }
+        author = { author }
+        coverImage = { coverImage }
+        html = { html }
+        tags = { tags }
+        previousPost = { previous }
+        nextPost = { next }
+        /> <
+        /Layout>
     );
 };
 
@@ -73,7 +75,7 @@ BlogPostTemplate.propTypes = {
 //     }
 //   }
 // `
-export const pageQuery = graphql`
+export const pageQuery = graphql `
     query($id: String) {
         strapiArticle(id: { eq: $id }) {
             id
