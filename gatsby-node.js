@@ -11,7 +11,7 @@ const indexTemplate = path.resolve(`./src/templates/index.js`);
 const aboutTemplate = path.resolve(`./src/templates/about.js`);
 // const tagsTemplate = path.resolve(`./src/templates/tags.js`)
 
-exports.createPages = async ({ actions, graphql }) => {
+exports.createPages = async({ actions, graphql }) => {
     const { createPage } = actions;
     const gqlResponse = await graphql(`
         {
@@ -52,7 +52,7 @@ exports.createPages = async ({ actions, graphql }) => {
         context: {
             // Data passed to context is available
             // in page queries as GraphQL variables.
-            limit: 100,
+            limit: 1000,
             skip: 0,
         },
     });

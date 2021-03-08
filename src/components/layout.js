@@ -8,7 +8,7 @@ import Footer from './footer';
 import '../styles/layout.css';
 
 const Layout = ({ children }) => {
-    const data = useStaticQuery(graphql `
+    const data = useStaticQuery(graphql`
         {
             siteMeta: strapiSiteMeta {
                 title
@@ -62,27 +62,26 @@ const Layout = ({ children }) => {
             path: `/${routeName.toLowerCase()}`,
         }));
     const { childImageSharp: { resize: { src: logoImgUrl } = {} } = {} } =
-    logo || {};
+        logo || {};
 
     const logoData = {
         src: logoImgUrl,
         alt: logoText,
     };
-    return ( <
-        div className = "container" >
-        <
-        Header siteTitle = { title }
-        siteLogo = { logoData }
-        logoText = { logoText }
-        defaultTheme = { defaultTheme }
-        mainMenu = { menuItemsRoutes }
-        mainMenuItems = { menuItemsCount }
-        menuMoreText = { menuMoreText }
-        /> <
-        div className = "content" > { children } < /div> <
-        Footer copyrights = { copyrightsText }
-        /> <
-        /div>
+    return (
+        <div className="container">
+            <Header
+                siteTitle={title}
+                siteLogo={logoData}
+                logoText={logoText}
+                defaultTheme={defaultTheme}
+                mainMenu={menuItemsRoutes}
+                mainMenuItems={menuItemsCount}
+                menuMoreText={menuMoreText}
+            />
+            <div className="content">{children}</div>
+            <Footer copyrights={copyrightsText} />
+        </div>
     );
 };
 

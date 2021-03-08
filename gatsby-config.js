@@ -122,7 +122,7 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-source-strapi-v2`,
+            resolve: `gatsby-source-strapi`,
             options: {
                 apiURL: `https://strapi.manoranjana.me`,
                 queryLimit: 1000, // Default to 100

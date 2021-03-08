@@ -13,34 +13,26 @@ const About = ({ data, pageContext }) => {
         },
     } = data;
 
-    return ( <
-            >
-            <
-            SEO / >
-            <
-            Layout >
-            <
-            img src = { publicURL }
-            alt = "about_cover"
-            style = {
-                { width: '100%' }
-            } >
-            <
-            /img> <
-            h1 > { HeaderText } < /h1> <
-            p style = {
-                { fontWeight: 700 }
-            } > { AboutContent } < /p> {
-            /* <Navigation
-                      previousPath={previousPagePath}
-                      previousLabel="Newer posts"
-                      nextPath={nextPagePath}
-                      nextLabel="Older posts"
-                    /> */
-        } <
-        /Layout> < /
-        >
-);
+    return (
+        <>
+            <SEO />
+            <Layout>
+                <img
+                    src={publicURL}
+                    alt="about_cover"
+                    style={{ width: '100%' }}
+                ></img>
+                <h1>{HeaderText}</h1>
+                <p style={{ fontWeight: 700 }}>{AboutContent}</p>
+                {/* <Navigation
+          previousPath={previousPagePath}
+          previousLabel="Newer posts"
+          nextPath={nextPagePath}
+          nextLabel="Older posts"
+        /> */}
+            </Layout>
+        </>
+    );
 };
 About.propTypes = {
     data: PropTypes.object.isRequired,
@@ -50,7 +42,7 @@ About.propTypes = {
     }),
 };
 
-export const postsQuery = graphql `
+export const postsQuery = graphql`
     query {
         strapiAboutPage {
             HeaderText

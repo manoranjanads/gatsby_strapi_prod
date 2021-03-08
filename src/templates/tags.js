@@ -17,56 +17,51 @@ const Tags = ({
         allMarkdownRemark: { edges: posts },
     } = data;
 
-    return ( <
-        >
-        <
-        SEO / >
-        <
-        Layout >
-        <
-        div className = "infoBanner" >
-        Posts with tag: < span > #{ tag } < /span> <
-        /div>
+    return (
+        <>
+            <SEO />
+            <Layout>
+                <div className="infoBanner">
+                    Posts with tag: <span>#{tag}</span>
+                </div>
 
-        {
-            posts.map(({ node }) => {
-                const {
-                    id,
-                    excerpt: autoExcerpt,
-                    frontmatter: {
-                        title,
-                        date,
-                        path,
-                        author,
-                        coverImage,
-                        excerpt,
-                        tags,
-                    },
-                } = node;
+                {posts.map(({ node }) => {
+                    const {
+                        id,
+                        excerpt: autoExcerpt,
+                        frontmatter: {
+                            title,
+                            date,
+                            path,
+                            author,
+                            coverImage,
+                            excerpt,
+                            tags,
+                        },
+                    } = node;
 
-                return ( <
-                    Post key = { id }
-                    title = { title }
-                    date = { date }
-                    path = { path }
-                    author = { author }
-                    tags = { tags }
-                    coverImage = { coverImage }
-                    excerpt = { excerpt || autoExcerpt }
-                    />
-                );
-            })
-        }
+                    return (
+                        <Post
+                            key={id}
+                            title={title}
+                            date={date}
+                            path={path}
+                            author={author}
+                            tags={tags}
+                            coverImage={coverImage}
+                            excerpt={excerpt || autoExcerpt}
+                        />
+                    );
+                })}
 
-        <
-        Navigation previousPath = { previousPagePath }
-        previousLabel = "Newer posts"
-        nextPath = { nextPagePath }
-        nextLabel = "Older posts" /
-        >
-        <
-        /Layout> <
-        />
+                <Navigation
+                    previousPath={previousPagePath}
+                    previousLabel="Newer posts"
+                    nextPath={nextPagePath}
+                    nextLabel="Older posts"
+                />
+            </Layout>
+        </>
     );
 };
 
@@ -78,7 +73,7 @@ Tags.propTypes = {
     }),
 };
 
-export const postsQuery = graphql `
+export const postsQuery = graphql`
     query($limit: Int!, $skip: Int!, $tag: String!) {
         allMarkdownRemark(
             filter: { frontmatter: { tags: { in: [$tag] } } }
